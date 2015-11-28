@@ -13,11 +13,6 @@ function makeDefaultConfig () {
     ],
     singleRun  : !argv.watch,
     frameworks : ['mocha', 'sinon-chai', 'chai-as-promised', 'chai'],
-    client: {
-      mocha: {
-
-      }
-   },
     preprocessors : {
       [KARMA_ENTRY_FILE] : ['webpack'],
       [`${config.get('dir_test')}/**/*.js`] : ['webpack']
