@@ -13,7 +13,6 @@ describe('(Reducer) Package', () => {
          packages: []
       });
 
-      console.log(initialState);
       const newPackage = {
          packageName: 'Test1',
          questions: [
@@ -53,7 +52,6 @@ describe('(Reducer) Package', () => {
 
       const action = { type: ActionTypes.ADD_QUESTION, question: questionToAdd, packageIndex: 0 };
       const nextState = packageReducer(initialState, action);
-      console.log(nextState.toJS().packages[0]);
 
       expect(nextState).to.equal(fromJS({
          packages:[ {
@@ -71,4 +69,80 @@ describe('(Reducer) Package', () => {
          }]
       }));
    });
+
+
+   it('should remove package', () => {
+
+      const packageToRemove = {
+         packageName: 'Test1',
+         questions: [
+            {
+               question: "Would like some coffee, dude?",
+               options: ["Yes", "No"],
+               markedAnswers: ["Yes"]
+            }
+          ]
+      }
+
+      const packageToRemove2 = {
+         packageName: 'Test21',
+         questions: [
+            {
+               question: "Would like some coffee, dude?",
+               options: ["Yes", "No"],
+               markedAnswers: ["Yes"]
+            }
+          ]
+      }
+
+
+      const initialState = fromJS({
+         packages: [packageToRemove, packageToRemove2]
+      });
+
+      const action = { type: ActionTypes.REMOVE_PACKAGE, package: packageToRemove};
+      const nextState = packageReducer(initialState, action);
+
+      expect(nextState).to.equal(fromJS({
+         packages: [packageToRemove2]
+      }));
+   })
+
+   it('should remove question from package', () => {
+
+      const questionToRemove = {
+         question: 'To be or not to be?',
+         options: ["To be", "Not to be"],
+         markedAnswers: []
+      }
+
+      const question2 = {
+         question: 'To be or not to be2?',
+         options: ["To be2", "Not to be2"],
+         markedAnswers: []
+      }
+
+      const initialPackage = {
+         packageName: 'test1',
+         questions: [
+            questionToRemove,
+            question2
+         ]
+      };
+      const initialState = fromJS({
+         packages: [initialPackage, initialPackage]
+      });
+
+      const action = { type: ActionTypes.REMOVE_QUESTION, packageIndex: 0, question: questionToRemove };
+      const nextState = packageReducer(initialState, action);
+
+      expect(nextState).to.equal(fromJS({
+         packages: [{
+            packageName: 'test1',
+            questions: [question2]
+         }, initialPackage]
+      }));
+   });
+
+
 });
