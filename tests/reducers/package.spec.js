@@ -9,8 +9,11 @@ describe('(Reducer) Package', () => {
 
 
    it('should add package', () => {
-      const initialState = Map();
+      const initialState = fromJS({
+         packages: []
+      });
 
+      console.log(initialState);
       const newPackage = {
          packageName: 'Test1',
          questions: [
@@ -22,14 +25,8 @@ describe('(Reducer) Package', () => {
           ]
       }
       const action = { type: ActionTypes.ADD_PACKAGE, package: newPackage };
-      console.log(initialState);
 
       const nextState = packageReducer(initialState, action);
-
-      console.log(fromJS({
-         packages: [newPackage]
-      }), "=====", nextState)
-
 
       expect(nextState).to.equal(fromJS({
          packages: [newPackage]
@@ -54,8 +51,9 @@ describe('(Reducer) Package', () => {
          markedAnswers: []
       }
 
-      const action = { type: ActionTypes.ADD_QUESTION, question: questionToAdd };
+      const action = { type: ActionTypes.ADD_QUESTION, question: questionToAdd, packageIndex: 0 };
       const nextState = packageReducer(initialState, action);
+      console.log(nextState.toJS().packages[0]);
 
       expect(nextState).to.equal(fromJS({
          packages:[ {
