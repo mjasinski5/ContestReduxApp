@@ -10,8 +10,25 @@ export function addPackage(packageToAdd) {
 
 export function addQuestion(question, packageIndex) {
 
-  return { 
+  return {
     type: actionTypes.ADD_QUESTION,
+    question,
+    packageIndex
+  }
+}
+
+export function removePackage(packageToRemove) {
+
+  return {
+    type: actionTypes.REMOVE_PACKAGE,
+    packageToRemove
+  }
+
+}
+
+export function removeQuestion(question, packageIndex) {
+  return {
+    type: actionTypes.REMOVE_QUESTION,
     question,
     packageIndex
   }

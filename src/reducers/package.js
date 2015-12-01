@@ -17,7 +17,7 @@ export default function packageReducer(state = INITIAL_STATE, action) {
       });
    case ActionTypes.REMOVE_PACKAGE:
       const packagesWithRemovedPack = state.get('packages').filter((element)=> {
-         return element.get('packageName') !== action.package.packageName
+         return element.get('packageName') !== action.packageToRemove.packageName
       });
 
       return state.setIn(['packages'], packagesWithRemovedPack);

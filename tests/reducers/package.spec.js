@@ -21,8 +21,8 @@ describe('(Reducer) Package', () => {
          markedAnswers: ["Yes"]
        }]
      };
-     const action = { type: ActionTypes.ADD_PACKAGE, packageToAdd: newPackage };
 
+     const action = { type: ActionTypes.ADD_PACKAGE, packageToAdd: newPackage };
      const nextState = packageReducer(initialState, action);
 
      expect(nextState).to.equal(fromJS({
@@ -92,12 +92,11 @@ describe('(Reducer) Package', () => {
           ]
       }
 
-
       const initialState = fromJS({
          packages: [packageToRemove, packageToRemove2]
       });
 
-      const action = { type: ActionTypes.REMOVE_PACKAGE, package: packageToRemove};
+      const action = { type: ActionTypes.REMOVE_PACKAGE, packageToRemove: packageToRemove};
       const nextState = packageReducer(initialState, action);
 
       expect(nextState).to.equal(fromJS({
@@ -126,6 +125,7 @@ describe('(Reducer) Package', () => {
             testQuestion
          ]
       };
+
       const initialState = fromJS({
          packages: [initialPackage, initialPackage]
       });
