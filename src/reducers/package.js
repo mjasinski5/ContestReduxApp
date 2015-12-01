@@ -6,7 +6,7 @@ export default function packageReducer(state = INITIAL_STATE, action) {
 
    case ActionTypes.ADD_PACKAGE:
     return state.merge({
-       packages: [action.package]
+       packages: [action.packageToAdd]
     });
 
    case ActionTypes.ADD_QUESTION:

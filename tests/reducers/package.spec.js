@@ -21,7 +21,7 @@ describe('(Reducer) Package', () => {
          markedAnswers: ["Yes"]
        }]
      };
-     const action = { type: ActionTypes.ADD_PACKAGE, package: newPackage };
+     const action = { type: ActionTypes.ADD_PACKAGE, packageToAdd: newPackage };
 
      const nextState = packageReducer(initialState, action);
 
