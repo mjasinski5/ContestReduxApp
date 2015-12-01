@@ -1,4 +1,4 @@
-import {Map, fromJS} from 'immutable';
+import {Map, fromJS, List} from 'immutable';
 import * as ActionTypes from 'constants/ActionTypes';
 
 export default function packageReducer(state = INITIAL_STATE, action) {
@@ -28,6 +28,11 @@ export default function packageReducer(state = INITIAL_STATE, action) {
       }));
 
       return state.setIn(['packages', action.packageIndex], packageWithRemovedQuestion);;
+
+    case ActionTypes.MARK_ANSWER:
+
+    const packageWithMarkedAnswer = state.get('packages').get(action.packageIndex).setIn(['questions', action.questionIndex, 'markedAnswers'], fromJS(action.answers))
+    return state.setIn(['packages', action.packageIndex], packageWithMarkedAnswer);
 
    default:
       return state;
